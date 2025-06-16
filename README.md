@@ -52,9 +52,28 @@ This project is divided into two parts:
 ```bash
 git clone https://github.com/manav121257NN/Crowdfunding-App-Using-Blockchain.git
 cd Crowdfunding-App-Using-Blockchain
-```
-
 cd crowdfunding-blockchain
 npm install
+npx hardhat compile
+npx hardhat node
+npx hardhat run scripts/deploy.js --network localhost
+cd ../crowdfunding-frontend
+npm install
+REACT_APP_CONTRACT_ADDRESS=YOUR_DEPLOYED_CONTRACT_ADDRESS
+REACT_APP_NETWORK_ID=5777
+npm start
+npm start
+
+```
+
+---
+
+Let me know if you want me to:
+- Add badges (build passing, license, etc.)
+- Create a GitHub Pages live preview for the frontend
+- Make a Hindi/Hinglish version of this README
+
+Would you like me to copy this into a file for you to upload directly?
+
 
 
