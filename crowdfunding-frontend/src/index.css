@@ -1,0 +1,7 @@
+/* index.css */
+/* TailwindCSS directives (if using Tailwind via PostCSS) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can add additional custom global styles below */
