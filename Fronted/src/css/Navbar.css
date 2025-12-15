@@ -1,0 +1,197 @@
+/* ---------------------------------------- */
+/*               THEME VARIABLES           */
+/* ---------------------------------------- */
+:root {
+  /* Background gradient for the navbar */
+  --navbar-bg-start: #ffffff;
+  --navbar-bg-end: #fafbfc;
+
+  /* Border & text colors */
+  --border-color: #e0e0e0;
+  --text-color: #2c3e50;
+
+  /* Hover & active link colors */
+  --hover-color: #3498db;
+  --active-color: #2ecc71;
+  --active-bg: rgba(46, 204, 113, 0.15);
+
+  /* Button colors */
+  --button-bg: #2ecc71;
+  --button-hover-bg: #27ae60;
+
+  /* Focus ring color for accessibility */
+  --focus-ring: rgba(46, 204, 113, 0.5);
+
+  /* Shadows */
+  --shadow-base: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------------------------------------- */
+/*            NAVBAR CONTAINER             */
+/* ---------------------------------------- */
+.navbar {
+  background: linear-gradient(
+    180deg,
+    var(--navbar-bg-start) 0%,
+    var(--navbar-bg-end) 100%
+  );
+  border-bottom: 1px solid var(--border-color);
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-base);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* ---------------------------------------- */
+/*          NAVBAR LINKS & STYLES          */
+/* ---------------------------------------- */
+.navbar-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.navbar-links a {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  position: relative;
+  outline: none;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.navbar-links a:hover,
+.navbar-links a:focus {
+  color: var(--hover-color);
+  background: rgba(52, 152, 219, 0.1);
+  outline: none; /* Custom focus styling below */
+}
+
+/* Underline effect on hover/focus */
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--active-color);
+  transition: width 0.3s ease;
+}
+
+.navbar-links a:hover::after,
+.navbar-links a:focus::after {
+  width: 100%;
+}
+
+/* Active link styling */
+.navbar-links a.active {
+  color: var(--active-color);
+  background: var(--active-bg);
+  font-weight: 700;
+}
+
+.navbar-links a.active::after {
+  width: 100%;
+  background-color: var(--active-color);
+}
+
+/* ---------------------------------------- */
+/*            CONNECT WALLET BTN           */
+/* ---------------------------------------- */
+.connect-btn {
+  background: var(--button-bg);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+}
+
+.connect-btn:hover {
+  background: var(--button-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
+}
+
+.connect-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.connect-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(46, 204, 113, 0.2);
+}
+
+/* ---------------------------------------- */
+/*          RESPONSIVE ADJUSTMENTS         */
+/* ---------------------------------------- */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .navbar-links {
+    gap: 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links a {
+    font-size: 1rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .navbar-links a.active {
+    font-weight: 600;
+  }
+
+  .connect-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+
+  .navbar-links {
+    gap: 1rem;
+  }
+
+  .navbar-links a {
+    font-size: 0.9rem;
+  }
+
+  .connect-btn {
+    padding: 0.5rem 1rem;
+  }
+}

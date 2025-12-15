@@ -1,0 +1,382 @@
+/* src/css/Dashboard.css */
+
+/* ========================================================================= */
+/* Global Reset & Base Styles */
+/* ========================================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif; /* Or your preferred font */
+  line-height: 1.6;
+  background-color: #f5f7fa;
+  color: #2c3e50;
+}
+
+/* ========================================================================= */
+/* Dashboard Container & Layout */
+/* ========================================================================= */
+.dashboard-container {
+  max-width: 1280px;
+  margin: 2.5rem auto;
+  padding: 3rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* ========================================================================= */
+/* Dashboard Content Layout */
+/* ========================================================================= */
+.dashboard-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+.dashboard-details {
+  flex: 1;
+  min-width: 320px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ========================================================================= */
+/* Headings & Text */
+/* ========================================================================= */
+.dashboard-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.dashboard-description {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  color: #7f8c8d;
+  line-height: 1.6;
+  padding: 0.5rem;
+}
+
+.dashboard-info {
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+  color: #34495e;
+}
+
+/* ========================================================================= */
+/* Funding Section */
+/* ========================================================================= */
+.fund-section {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fund-input {
+  padding: 0.9rem;
+  width: 200px;
+  border: 2px solid #ecf0f1;
+  border-radius: 8px;
+  background: #fafafa;
+  color: #2c3e50;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.fund-input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.fund-btn {
+  padding: 0.9rem 2rem;
+  background: #2ecc71;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.fund-btn:hover {
+  background: #27ae60;
+  transform: translateY(-2px);
+}
+
+.fund-btn:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ========================================================================= */
+/* Withdraw Button */
+/* ========================================================================= */
+.withdraw-btn {
+  padding: 1rem 2.5rem;
+  background: #e67e22;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.withdraw-btn:hover {
+  background: #d35400;
+  transform: translateY(-2px);
+}
+
+.withdraw-btn:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ========================================================================= */
+/* Dashboard Image */
+/* ========================================================================= */
+.dashboard-image {
+  flex: 1;
+  min-width: 320px;
+}
+
+.dashboard-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================================================= */
+/* Progress Bar & Analytics Styles */
+/* ========================================================================= */
+.progress-bar {
+  width: 100%;
+  height: 16px;
+  background-color: #ecf0f1;
+  border-radius: 8px;
+  margin: 1.25rem 0;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, #2ecc71 0%, #27ae60 100%);
+  transition: width 0.5s ease-in-out, background 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+  position: relative;
+}
+
+.progress::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 30px 30px;
+  animation: moveStripe 2s linear infinite;
+}
+
+@keyframes moveStripe {
+  0% { background-position: 0 0; }
+  100% { background-position: 30px 30px; }
+}
+
+.progress-text {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  color: #34495e;
+  font-weight: 500;
+  text-align: center;
+}
+
+.backers {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  text-align: center;
+}
+
+.trend {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  color: #95a5a6;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ========================================================================= */
+/* Transaction Log Styles */
+/* ========================================================================= */
+.transaction-log {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  background: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #ecf0f1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.log-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+.log-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.log-item {
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #ecf0f1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.log-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.log-type {
+  font-weight: 500;
+  color: #2ecc71;
+  margin-right: 0.5rem;
+}
+
+.log-sender {
+  font-weight: 500;
+  color: #3498db;
+}
+
+.log-amount {
+  font-weight: 500;
+  color: #e67e22;
+}
+
+.log-timestamp {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-left: 0.5rem;
+}
+
+/* ========================================================================= */
+/* Responsive Adjustments */
+/* ========================================================================= */
+@media (max-width: 1024px) {
+  .dashboard-container {
+    padding: 2rem;
+  }
+
+  .dashboard-content {
+    gap: 2rem;
+  }
+
+  .dashboard-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1.5rem;
+  }
+
+  .dashboard-content {
+    gap: 1.5rem;
+  }
+
+  .dashboard-title {
+    font-size: 1.8rem;
+  }
+
+  .dashboard-details,
+  .dashboard-image {
+    min-width: 100%;
+  }
+
+  .fund-section {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .fund-input {
+    width: 100%;
+  }
+
+  .transaction-log {
+    padding: 1rem;
+  }
+
+  .log-heading {
+    font-size: 1.3rem;
+  }
+}
+
+.time-remaining {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.status.closed {
+  color: #ff4444; /* Red color for closed status */
+  font-weight: bold;
+}
+
+.refund-btn {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+.refund-btn:hover {
+  background-color: #cc0000;
+}
