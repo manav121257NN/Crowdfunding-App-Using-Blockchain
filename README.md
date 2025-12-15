@@ -55,21 +55,17 @@ cd Crowdfunding-App-Using-Blockchain
 ```
 for baackend 
 ```bash
-cd crowdfunding-blockchain
+cd Backend
 npm install
 npx hardhat compile
-npx hardhat node
-npx hardhat run scripts/deploy.js --network localhost
+npx hardhat run scripts/deploy.js --network ganache
 ```
 for frontend
 ```bash
-cd ../crowdfunding-frontend
+cd ../Fronted
 npm install
-REACT_APP_CONTRACT_ADDRESS=YOUR_DEPLOYED_CONTRACT_ADDRESS
-REACT_APP_NETWORK_ID=5777
+directory Fronted\src\contractConfig.js REACT_APP_CONTRACT_ADDRESS=YOUR_DEPLOYED_CONTRACT_ADDRESS
 npm start
-npm start
-
 ```
 
 
@@ -78,3 +74,4 @@ npm start
 ![image alt](https://github.com/manav121257NN/Crowdfunding-App-Using-Blockchain/blob/df05d5693af7852aa1c0f18051eea5340602eae9/Images/Screenshot%202025-08-03%20185315.png)
 ![image alt](https://github.com/manav121257NN/Crowdfunding-App-Using-Blockchain/blob/df05d5693af7852aa1c0f18051eea5340602eae9/Images/Screenshot%202025-08-03%20185327.png)
 ![image alt](https://github.com/manav121257NN/Crowdfunding-App-Using-Blockchain/blob/df05d5693af7852aa1c0f18051eea5340602eae9/Images/Screenshot%202025-08-03%20185338.png)
+
