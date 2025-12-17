@@ -1,186 +1,301 @@
-/* ----------------------------- */
-/*          COLOR THEME          */
-/* ----------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
 :root {
-  --color-primary: #1D3557;
-  --color-secondary: #457B9D;
-  --color-accent: #E63946;
-  --color-background: #F1FAEE;
-  --color-card-bg: #FFFFFF;
-  --color-text: #2C3E50;
-  --color-border: #E0E0E0;
-  --color-success: #2ECC71;
-  --color-danger: #E74C3C;
-  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.2);
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Core Colors */
+  --bg-main: #020617;
+  --bg-card: rgba(15, 23, 42, 0.75);
+  --border-soft: rgba(255,255,255,0.08);
+
+  --primary: #6366f1;
+  --primary-glow: rgba(99,102,241,0.45);
+  --secondary: #22d3ee;
+
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+
+  --shadow-lg: 0 30px 80px rgba(0,0,0,0.6);
 }
 
-/* ----------------------------- */
-/*         GLOBAL RESETS         */
-/* ----------------------------- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ========================================================================= */
+/* 2. PAGE LAYOUT                                                            */
+/* ========================================================================= */
+
+.campaigns-page {
+  min-height: 100vh;
+  padding: 5rem 1rem;
+  background:
+    radial-gradient(circle at top, #312e81 0%, var(--bg-main) 45%),
+    linear-gradient(180deg, var(--bg-main), var(--bg-main));
+  font-family: var(--font-body);
+  color: var(--text-main);
+  overflow-x: hidden;
 }
 
-body {
-  background-color: var(--color-background);
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  color: var(--color-text);
-  line-height: 1.6;
-}
-
-/* ----------------------------- */
-/*     CAMPAIGNS CONTAINER       */
-/* ----------------------------- */
-.campaigns-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-/* Heading for "All Campaigns" or "My Campaigns" */
-.campaigns-heading {
-  font-size: 2rem;
-  font-weight: 700;
+.header-section {
   text-align: center;
-  margin-bottom: 40px;
-  color: var(--color-primary);
+  margin-bottom: 3rem;
+  padding: 0 1rem;
 }
 
-/* ----------------------------- */
-/*      CAMPAIGNS GRID WRAP      */
-/* ----------------------------- */
-.campaigns-wrapper {
+.page-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  background: linear-gradient(90deg, #a5b4fc, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  margin-top: 0.8rem;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* ========================================================================= */
+/* 3. GRID                                                                   */
+/* ========================================================================= */
+
+.campaigns-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-}
-
-/* ----------------------------- */
-/*       CAMPAIGN CARD           */
-/* ----------------------------- */
-.campaign-card {
-  background-color: var(--color-card-bg);
-  border-radius: 10px;
-  box-shadow: var(--shadow-light);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-.campaign-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-}
-
-/* Campaign card image */
-.campaign-card img {
+  /* Optimized grid columns for mobile */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
   width: 100%;
-  height: 180px;
-  object-fit: cover;
 }
 
-/* Info section within campaign card */
-.info {
-  padding: 16px;
-}
+/* ========================================================================= */
+/* 4. CARD                                                                   */
+/* ========================================================================= */
 
-/* Title of the campaign */
-.title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--color-text);
-}
-
-/* Basic text details (goal, creation date, etc.) */
-.details {
-  font-size: 0.875rem;
-  color: #555;
-  margin-bottom: 10px;
-}
-
-/* ----------------------------- */
-/*       PROGRESS SECTION        */
-/* ----------------------------- */
-/* Progress bar container */
-.progress-bar {
-  position: relative;
-  background-color: var(--color-border);
-  height: 8px;
-  border-radius: 4px;
+.campaign-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 20px;
   overflow: hidden;
-  margin: 10px 0;
-}
-
-/* Progress fill */
-.progress {
-  background: linear-gradient(90deg, var(--color-secondary) 0%, var(--color-primary) 100%);
-  height: 100%;
-  width: 0; /* Set dynamically in JS or inline style */
-  transition: width 0.4s ease-in-out;
-}
-
-/* Progress text (percentage) */
-.progress-text {
-  font-size: 0.75rem;
-  text-align: right;
-  color: #777;
-}
-
-/* ----------------------------- */
-/*         STATUS LABELS         */
-/* ----------------------------- */
-.status {
-  display: inline-block;
-  padding: 6px 12px;
-  margin-top: 8px;
-  border-radius: 16px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-/* Open status */
-.status.open {
-  background-color: rgba(46, 204, 113, 0.15);
-  color: var(--color-success);
-}
-
-/* Closed status */
-.status.closed {
-  background-color: rgba(231, 76, 60, 0.15);
-  color: var(--color-danger);
-}
-
-/* ----------------------------- */
-/*        REFRESH BUTTON         */
-/* ----------------------------- */
-.refresh-btn {
-  display: block;
-  margin: 30px auto;
-  padding: 12px 28px;
-  font-size: 1rem;
-  font-weight: 600;
-  background-color: var(--color-primary);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-lg);
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-.refresh-btn:hover {
-  background-color: var(--color-secondary);
-  transform: scale(1.02);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
 }
 
-/* ----------------------------- */
-/*    NO CAMPAIGNS MESSAGE       */
-/* ----------------------------- */
-.no-campaigns {
-  text-align: center;
-  font-size: 1rem;
-  color: #555;
-  margin-top: 40px;
+.campaign-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 40px 100px rgba(0,0,0,0.8),
+    0 0 40px var(--primary-glow);
+}
+
+/* ========================================================================= */
+/* IMAGE (UPDATED TO SHOW FULL IMAGE)                                        */
+/* ========================================================================= */
+
+.card-image-wrapper {
+  position: relative;
+  height: 220px;
+  background: #000000; /* Dark background for letterboxing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  /* CHANGED FROM COVER TO CONTAIN */
+  object-fit: contain; 
+  transition: transform 0.8s ease;
+}
+
+.campaign-card:hover .card-img {
+  transform: scale(1.05);
+}
+
+/* STATUS BADGE */
+
+.status-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.status-badge.open {
+  color: #22c55e;
+  background: rgba(34,197,94,0.2);
+}
+
+.status-badge.closed {
+  color: #ef4444;
+  background: rgba(239,68,68,0.2);
+}
+
+/* ========================================================================= */
+/* CONTENT                                                                   */
+/* ========================================================================= */
+
+.card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ========================================================================= */
+/* PROGRESS                                                                  */
+/* ========================================================================= */
+
+.progress-section {
+  margin-top: auto;
+  margin-bottom: 1.2rem;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.raised-val {
+  font-weight: 800;
+  color: var(--secondary);
+}
+
+.goal-val {
+  color: var(--text-muted);
+}
+
+.progress-track {
+  height: 8px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 6px;
+}
+
+/* ========================================================================= */
+/* FOOTER                                                                    */
+/* ========================================================================= */
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.avatar-placeholder {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #22d3ee);
+}
+
+.creator-address {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.date-tag {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ========================================================================= */
+/* REFRESH FAB                                                               */
+/* ========================================================================= */
+
+.refresh-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(99,102,241,0.4);
+  transition: transform 0.25s ease;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refresh-fab:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+
+/* ========================================================================= */
+/* MOBILE RESPONSIVENESS                                                     */
+/* ========================================================================= */
+
+@media (max-width: 640px) {
+  .campaigns-page {
+    padding: 4rem 1rem;
+  }
+
+  .campaigns-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .page-title {
+    font-size: 2.2rem;
+  }
 }

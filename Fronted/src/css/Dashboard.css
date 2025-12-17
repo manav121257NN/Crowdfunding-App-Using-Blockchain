@@ -1,382 +1,657 @@
-/* src/css/Dashboard.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap");
 
-/* ========================================================================= */
-/* Global Reset & Base Styles */
-/* ========================================================================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --bg-main: #020617;
+  --bg-card: rgba(15, 23, 42, 0.78);
+  --border-soft: rgba(255,255,255,0.08);
+
+  --primary: #6366f1;
+  --secondary: #22d3ee;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
 }
 
-body {
-  font-family: 'Arial', sans-serif; /* Or your preferred font */
-  line-height: 1.6;
-  background-color: #f5f7fa;
-  color: #2c3e50;
+/* ================= PAGE ================= */
+
+.dashboard-wrapper {
+  min-height: 100vh;
+  padding: 5rem 2rem;
+  background:
+    radial-gradient(circle at top, #312e81 0%, var(--bg-main) 45%),
+    linear-gradient(180deg, var(--bg-main), var(--bg-main));
+  font-family: "Inter", sans-serif;
+  color: var(--text-main);
 }
 
-/* ========================================================================= */
-/* Dashboard Container & Layout */
-/* ========================================================================= */
 .dashboard-container {
   max-width: 1280px;
-  margin: 2.5rem auto;
-  padding: 3rem;
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-/* ========================================================================= */
-/* Dashboard Content Layout */
-/* ========================================================================= */
-.dashboard-content {
-  display: flex;
-  flex-wrap: wrap;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.7fr 1.1fr;
   gap: 3rem;
-  align-items: flex-start;
 }
 
-.dashboard-details {
-  flex: 1;
-  min-width: 320px;
-}
+/* ================= LEFT ================= */
 
-.dashboard-header {
+.main-content {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
-/* ========================================================================= */
-/* Headings & Text */
-/* ========================================================================= */
-.dashboard-title {
-  font-size: 2.8rem;
-  font-weight: 700;
-  margin: 0;
-  line-height: 1.2;
-}
+/* HERO */
 
-.dashboard-description {
-  font-size: 1.3rem;
-  margin-top: 1rem;
-  margin-bottom: 0;
-  color: #7f8c8d;
-  line-height: 1.6;
-  padding: 0.5rem;
-}
-
-.dashboard-info {
-  font-size: 1.25rem;
-  margin-bottom: 1.25rem;
-  color: #34495e;
-}
-
-/* ========================================================================= */
-/* Funding Section */
-/* ========================================================================= */
-.fund-section {
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.fund-input {
-  padding: 0.9rem;
-  width: 200px;
-  border: 2px solid #ecf0f1;
-  border-radius: 8px;
-  background: #fafafa;
-  color: #2c3e50;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-.fund-input:focus {
-  border-color: #3498db;
-  outline: none;
-}
-
-.fund-btn {
-  padding: 0.9rem 2rem;
-  background: #2ecc71;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.fund-btn:hover {
-  background: #27ae60;
-  transform: translateY(-2px);
-}
-
-.fund-btn:disabled {
-  background: #95a5a6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* ========================================================================= */
-/* Withdraw Button */
-/* ========================================================================= */
-.withdraw-btn {
-  padding: 1rem 2.5rem;
-  background: #e67e22;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.withdraw-btn:hover {
-  background: #d35400;
-  transform: translateY(-2px);
-}
-
-.withdraw-btn:disabled {
-  background: #95a5a6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* ========================================================================= */
-/* Dashboard Image */
-/* ========================================================================= */
-.dashboard-image {
-  flex: 1;
-  min-width: 320px;
-}
-
-.dashboard-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* ========================================================================= */
-/* Progress Bar & Analytics Styles */
-/* ========================================================================= */
-.progress-bar {
-  width: 100%;
-  height: 16px;
-  background-color: #ecf0f1;
-  border-radius: 8px;
-  margin: 1.25rem 0;
+.hero-image-container {
+  position: relative;
+  height: 420px;
+  border-radius: 26px;
   overflow: hidden;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  background: #000000; /* Black background for letterboxing */
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-card);
 }
 
-.progress {
+.hero-image {
+  width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #2ecc71 0%, #27ae60 100%);
-  transition: width 0.5s ease-in-out, background 0.3s ease;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+  /* CHANGED TO CONTAIN TO SHOW FULL IMAGE */
+  object-fit: contain; 
+}
+
+.category-tag {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: white;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  box-shadow: 0 0 20px rgba(99,102,241,0.6);
+}
+
+/* TABS */
+
+.tabs-header {
+  display: flex;
+  gap: 3rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 1.2rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
   position: relative;
 }
 
-.progress::after {
+.tab-btn.active {
+  color: white;
+}
+
+.tab-btn.active::after {
   content: "";
   position: absolute;
-  top: 0;
+  bottom: -1px;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.2) 25%,
-    transparent 25%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.2) 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 30px 30px;
-  animation: moveStripe 2s linear infinite;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
 }
 
-@keyframes moveStripe {
-  0% { background-position: 0 0; }
-  100% { background-position: 30px 30px; }
+/* STORY */
+
+.story-text {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--text-main);
 }
 
-.progress-text {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
-  color: #34495e;
-  font-weight: 500;
-  text-align: center;
+.story-heading {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
 }
 
-.backers {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
-  color: #7f8c8d;
-  text-align: center;
-}
+/* CREATOR */
 
-.trend {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
-  color: #95a5a6;
-  font-style: italic;
-  text-align: center;
-}
-
-/* ========================================================================= */
-/* Transaction Log Styles */
-/* ========================================================================= */
-.transaction-log {
+.creator-badge {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
   margin-top: 2.5rem;
-  padding: 1.5rem;
-  background: #fafafa;
-  border-radius: 8px;
-  border: 1px solid #ecf0f1;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 1.6rem;
+  background: var(--bg-card);
+  border-radius: 20px;
+  border: 1px solid var(--border-soft);
 }
 
-.log-heading {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 1.25rem;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 0.5rem;
+.creator-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
 }
 
-.log-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.creator-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
 }
 
-.log-item {
-  padding: 1rem;
-  margin-bottom: 0.75rem;
-  background: #ffffff;
-  border-radius: 6px;
-  border: 1px solid #ecf0f1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s ease;
+.creator-name {
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
-.log-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+/* DONORS */
+
+.donor-row {
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--border-soft);
 }
 
-.log-type {
-  font-weight: 500;
-  color: #2ecc71;
-  margin-right: 0.5rem;
+.donor-avatar-placeholder {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
 }
 
-.log-sender {
-  font-weight: 500;
-  color: #3498db;
+.donor-address {
+  font-weight: 700;
 }
 
-.log-amount {
-  font-weight: 500;
-  color: #e67e22;
+.address-sub,
+.donor-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
-.log-timestamp {
+.donor-amount {
+  margin-left: auto;
+  font-weight: 900;
+  color: var(--success);
+}
+
+/* ================= RIGHT ================= */
+
+.sidebar-content {
+  position: sticky;
+  top: 100px;
+}
+
+.funding-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(18px);
+  padding: 2.8rem;
+  border-radius: 28px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 40px 120px rgba(0,0,0,0.9);
+}
+
+/* HEADER */
+
+.funding-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.funding-status {
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 6px 14px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background: rgba(34,197,94,0.15);
+  color: var(--success);
+}
+
+.funding-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* TITLE */
+
+.campaign-title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 2.4rem;
+  line-height: 1.1;
+  margin-bottom: 2.2rem;
+  background: linear-gradient(90deg, #a5b4fc, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* PROGRESS */
+
+.progress-bar-bg {
+  height: 14px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 10px;
+  transition: width 0.8s ease;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.2rem;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.stat-value small {
   font-size: 0.9rem;
-  color: #7f8c8d;
-  margin-left: 0.5rem;
+  color: var(--text-muted);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ACTION */
+
+.action-box {
+  margin-top: 2.5rem;
+  padding: 1.8rem;
+  border-radius: 20px;
+  background: rgba(2,6,23,0.8);
+  border: 1px solid var(--border-soft);
+}
+
+.amount-input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  background: rgba(2,6,23,0.9);
+  border: 1px solid var(--border-soft);
+  color: white;
+  font-size: 1.2rem;
+}
+
+.amount-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.eth-suffix {
+  position: absolute;
+  right: 1.2rem;
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+.donate-btn {
+  width: 100%;
+  margin-top: 1.4rem;
+  padding: 1.1rem;
+  border-radius: 14px;
+  border: none;
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  box-shadow: 0 20px 40px rgba(99,102,241,0.45);
+}
+
+.donate-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* OWNER */
+
+.owner-panel {
+  margin-top: 2.4rem;
+  padding-top: 1.6rem;
+  border-top: 1px dashed var(--border-soft);
+}
+
+.withdraw-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 14px;
+  border: none;
+  font-weight: 900;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(135deg, var(--warning), #fbbf24);
+}
+
+/* ================= MOBILE ================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
+:root {
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Core Colors */
+  --bg-main: #020617;
+  --bg-card: rgba(15, 23, 42, 0.75);
+  --border-soft: rgba(255,255,255,0.08);
+
+  --primary: #6366f1;
+  --primary-glow: rgba(99,102,241,0.45);
+  --secondary: #22d3ee;
+
+  --text-main: #e5e7eb;
+  --text-muted: #94a3b8;
+
+  --shadow-lg: 0 30px 80px rgba(0,0,0,0.6);
 }
 
 /* ========================================================================= */
-/* Responsive Adjustments */
+/* 2. PAGE LAYOUT                                                            */
 /* ========================================================================= */
-@media (max-width: 1024px) {
-  .dashboard-container {
-    padding: 2rem;
+
+.campaigns-page {
+  min-height: 100vh;
+  padding: 5rem 1rem;
+  background:
+    radial-gradient(circle at top, #312e81 0%, var(--bg-main) 45%),
+    linear-gradient(180deg, var(--bg-main), var(--bg-main));
+  font-family: var(--font-body);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.page-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  background: linear-gradient(90deg, #a5b4fc, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  margin-top: 0.8rem;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* ========================================================================= */
+/* 3. GRID                                                                   */
+/* ========================================================================= */
+
+.campaigns-grid {
+  display: grid;
+  /* Optimized grid columns for mobile */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ========================================================================= */
+/* 4. CARD                                                                   */
+/* ========================================================================= */
+
+.campaign-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.campaign-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 40px 100px rgba(0,0,0,0.8),
+    0 0 40px var(--primary-glow);
+}
+
+/* ========================================================================= */
+/* IMAGE (UPDATED TO SHOW FULL IMAGE)                                        */
+/* ========================================================================= */
+
+.card-image-wrapper {
+  position: relative;
+  height: 220px;
+  background: #000000; /* Dark background for letterboxing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  /* CHANGED FROM COVER TO CONTAIN */
+  object-fit: contain; 
+  transition: transform 0.8s ease;
+}
+
+.campaign-card:hover .card-img {
+  transform: scale(1.05);
+}
+
+/* STATUS BADGE */
+
+.status-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.status-badge.open {
+  color: #22c55e;
+  background: rgba(34,197,94,0.2);
+}
+
+.status-badge.closed {
+  color: #ef4444;
+  background: rgba(239,68,68,0.2);
+}
+
+/* ========================================================================= */
+/* CONTENT                                                                   */
+/* ========================================================================= */
+
+.card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ========================================================================= */
+/* PROGRESS                                                                  */
+/* ========================================================================= */
+
+.progress-section {
+  margin-top: auto;
+  margin-bottom: 1.2rem;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.raised-val {
+  font-weight: 800;
+  color: var(--secondary);
+}
+
+.goal-val {
+  color: var(--text-muted);
+}
+
+.progress-track {
+  height: 8px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 6px;
+}
+
+/* ========================================================================= */
+/* FOOTER                                                                    */
+/* ========================================================================= */
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.avatar-placeholder {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #22d3ee);
+}
+
+.creator-address {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.date-tag {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ========================================================================= */
+/* REFRESH FAB                                                               */
+/* ========================================================================= */
+
+.refresh-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(99,102,241,0.4);
+  transition: transform 0.25s ease;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refresh-fab:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+
+/* ========================================================================= */
+/* MOBILE RESPONSIVENESS                                                     */
+/* ========================================================================= */
+
+@media (max-width: 640px) {
+  .campaigns-page {
+    padding: 4rem 1rem;
   }
 
-  .dashboard-content {
+  .campaigns-grid {
+    grid-template-columns: 1fr;
     gap: 2rem;
   }
-
-  .dashboard-title {
+  
+  .page-title {
     font-size: 2.2rem;
   }
-}
-
-@media (max-width: 768px) {
-  .dashboard-container {
-    padding: 1.5rem;
-  }
-
-  .dashboard-content {
-    gap: 1.5rem;
-  }
-
-  .dashboard-title {
-    font-size: 1.8rem;
-  }
-
-  .dashboard-details,
-  .dashboard-image {
-    min-width: 100%;
-  }
-
-  .fund-section {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .fund-input {
-    width: 100%;
-  }
-
-  .transaction-log {
-    padding: 1rem;
-  }
-
-  .log-heading {
-    font-size: 1.3rem;
-  }
-}
-
-.time-remaining {
-  font-size: 0.9rem;
-  color: #555;
-  margin: 5px 0;
-}
-
-.status.closed {
-  color: #ff4444; /* Red color for closed status */
-  font-weight: bold;
-}
-
-.refund-btn {
-  background-color: #ff4444;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 5px 0;
-}
-
-.refund-btn:hover {
-  background-color: #cc0000;
-}
+} 
