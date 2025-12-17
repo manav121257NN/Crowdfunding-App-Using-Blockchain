@@ -58,6 +58,8 @@ for baackend
 cd Backend
 npm install
 npx hardhat compile
+directory Fronted\src\contractConfig.js REACT_APP_CONTRACT_ADDRESS=YOUR_DEPLOYED_CONTRACT_ADDRESS
+If error occure try "npx hardhat node "
 npx hardhat run scripts/deploy.js --network ganache
 ```
 for frontend
