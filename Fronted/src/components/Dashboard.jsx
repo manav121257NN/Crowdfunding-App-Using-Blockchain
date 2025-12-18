@@ -143,7 +143,18 @@ function Dashboard({ showToast }) {
     }
   };
 
-  if (!campaign) return <div className="loading-screen">Loading...</div>;
+  if (!campaign) {
+  return (
+    <div className="loading-screen">
+      <div className="loader-card">
+        <div className="spinner"></div>
+        <h2>Loading Campaign</h2>
+        <p>Fetching data from blockchain...</p>
+      </div>
+    </div>
+  );
+}
+
 
   const isOwner = campaign.owner === userAddress;
   const goalReached = parseFloat(campaign.fundsRaised) >= parseFloat(campaign.goal);
