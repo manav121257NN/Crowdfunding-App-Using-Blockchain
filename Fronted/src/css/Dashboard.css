@@ -637,24 +637,58 @@
   transform: rotate(180deg) scale(1.1);
 }
 
-/* ========================================================================= */
-/* MOBILE RESPONSIVENESS                                                     */
-/* ========================================================================= */
+/* ================= MOBILE FIX FOR DASHBOARD ================= */
 
-@media (max-width: 640px) {
-  .campaigns-page {
-    padding: 4rem 1rem;
-  }
+@media (max-width: 900px) {
 
-  .campaigns-grid {
-    grid-template-columns: 1fr;
+  .dashboard-container {
+    grid-template-columns: 1fr; /* ONE COLUMN */
     gap: 2rem;
   }
-  
-  .page-title {
-    font-size: 2.2rem;
+
+  .hero-image-container {
+    height: 240px; /* smaller image */
+    border-radius: 18px;
   }
-} 
+
+  .hero-image {
+    object-fit: contain;
+  }
+
+  .sidebar-content {
+    position: relative; /* disable sticky */
+    top: auto;
+  }
+
+  .funding-card {
+    padding: 1.8rem;
+    border-radius: 22px;
+  }
+
+  .campaign-title {
+    font-size: 1.8rem;
+  }
+
+  .stats-grid {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+
+  .tabs-header {
+    gap: 1.5rem;
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+}
+
 /* ---------- MODERN LOADING SCREEN ---------- */
 
 .loading-screen {
