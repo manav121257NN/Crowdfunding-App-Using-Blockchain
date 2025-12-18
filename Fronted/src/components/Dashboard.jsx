@@ -32,7 +32,7 @@ function Dashboard({ showToast }) {
       particleCount: 150,
       spread: 70,
       origin: { y: 0.6 },
-      colors: ['#6366f1', '#22d3ee', '#ef4444', '#22c55e'] // Matches your theme colors
+      colors: ['#6366f1', '#22d3ee', '#ef4444', '#22c55e']
     });
   };
 
@@ -132,7 +132,7 @@ function Dashboard({ showToast }) {
       const tx = await contract.withdrawFunds(id);
       await tx.wait();
 
-      triggerConfetti(); // Celebration for withdrawal too!
+      triggerConfetti(); 
       notify("Funds withdrawn to your wallet!", "success");
       fetchData();
     } catch (error) {
@@ -144,17 +144,16 @@ function Dashboard({ showToast }) {
   };
 
   if (!campaign) {
-  return (
-    <div className="loading-screen">
-      <div className="loader-card">
-        <div className="spinner"></div>
-        <h2>Loading Campaign</h2>
-        <p>Fetching data from blockchain...</p>
+    return (
+      <div className="loading-screen">
+        <div className="loader-card">
+          <div className="spinner"></div>
+          <h2>Loading Campaign</h2>
+          <p>Fetching data from blockchain...</p>
+        </div>
       </div>
-    </div>
-  );
-}
-
+    );
+  }
 
   const isOwner = campaign.owner === userAddress;
   const goalReached = parseFloat(campaign.fundsRaised) >= parseFloat(campaign.goal);
