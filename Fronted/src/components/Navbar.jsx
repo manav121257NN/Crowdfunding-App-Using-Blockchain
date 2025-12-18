@@ -34,7 +34,7 @@ function Navbar({ walletAddress, setWalletAddress }) {
     <nav className="navbar">
       <div className="navbar-container">
         {/* LOGO */}
-        <div className="navbar-logo">CrowdFund <br></br>Decentralize Platfrom 👌</div>
+        <div className="navbar-logo">CrowdFund <br></br>DApp👌</div>
         
 
         {/* LINKS */}
