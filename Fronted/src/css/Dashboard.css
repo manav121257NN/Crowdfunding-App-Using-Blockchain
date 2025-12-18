@@ -1,9 +1,18 @@
+/* ================= GOOGLE FONTS ================= */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap");
+
+/* ================= RESET & VARS ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* CRITICAL FIX: Ensures padding doesn't break layout */
+}
 
 :root {
   --bg-main: #020617;
   --bg-card: rgba(15, 23, 42, 0.78);
   --border-soft: rgba(255,255,255,0.08);
+  --input-bg: rgba(255,255,255,0.05);
 
   --primary: #6366f1;
   --secondary: #22d3ee;
@@ -15,11 +24,17 @@
   --text-muted: #94a3b8;
 }
 
-/* ================= PAGE ================= */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background: var(--bg-main);
+}
 
+/* ================= PAGE STRUCTURE ================= */
 .dashboard-wrapper {
   min-height: 100vh;
-  padding: 5rem 2rem;
+  padding: 5rem 1rem 2rem 1rem;
   background:
     radial-gradient(circle at top, #312e81 0%, var(--bg-main) 45%),
     linear-gradient(180deg, var(--bg-main), var(--bg-main));
@@ -28,38 +43,39 @@
 }
 
 .dashboard-container {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1.7fr 1.1fr;
   gap: 3rem;
+  align-items: start;
 }
 
-/* ================= LEFT ================= */
-
+/* ================= LEFT COLUMN (MAIN) ================= */
 .main-content {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2rem;
+  width: 100%;
+  min-width: 0; /* Prevents flex items from overflowing */
 }
 
-/* HERO */
-
+/* HERO IMAGE */
 .hero-image-container {
   position: relative;
+  width: 100%;
   height: 420px;
   border-radius: 26px;
   overflow: hidden;
-  background: #000000; /* Black background for letterboxing */
+  background: #000;
   border: 1px solid var(--border-soft);
-  box-shadow: var(--shadow-card);
 }
 
 .hero-image {
   width: 100%;
   height: 100%;
-  /* CHANGED TO CONTAIN TO SHOW FULL IMAGE */
-  object-fit: contain; 
+  object-fit: cover; /* Changed to cover for better filling */
 }
 
 .category-tag {
@@ -71,83 +87,80 @@
   font-size: 0.7rem;
   font-weight: 900;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: white;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
-  box-shadow: 0 0 20px rgba(99,102,241,0.6);
+  z-index: 2;
 }
 
 /* TABS */
-
 .tabs-header {
   display: flex;
-  gap: 3rem;
+  gap: 2rem;
   border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 1rem;
+  overflow-x: auto; /* Allows scroll on very small screens */
 }
 
 .tab-btn {
   background: none;
   border: none;
-  padding: 1.2rem 0;
+  padding: 1rem 0;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--text-muted);
   cursor: pointer;
-  position: relative;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+.tab-btn:hover {
+  color: white;
 }
 
 .tab-btn.active {
   color: white;
+  border-bottom: 3px solid var(--primary);
 }
 
-.tab-btn.active::after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-}
-
-/* STORY */
-
+/* STORY TEXT */
 .story-text {
   font-size: 1.05rem;
-  line-height: 1.9;
-  color: var(--text-main);
+  line-height: 1.8;
+  color: #cbd5e1;
 }
 
 .story-heading {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 1.8rem;
   margin-bottom: 1rem;
+  color: white;
 }
 
-/* CREATOR */
-
+/* CREATOR BADGE */
 .creator-badge {
   display: flex;
   align-items: center;
   gap: 1.2rem;
   margin-top: 2.5rem;
-  padding: 1.6rem;
+  padding: 1.5rem;
   background: var(--bg-card);
   border-radius: 20px;
   border: 1px solid var(--border-soft);
 }
 
 .creator-avatar {
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
+  flex-shrink: 0;
 }
 
 .creator-label {
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   color: var(--text-muted);
   text-transform: uppercase;
 }
@@ -155,77 +168,105 @@
 .creator-name {
   font-size: 1.1rem;
   font-weight: 700;
+  color: white;
 }
 
-/* DONORS */
+/* DONORS LIST */
+.donors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
 .donor-row {
   display: flex;
   align-items: center;
-  padding: 1.2rem 0;
-  border-bottom: 1px solid var(--border-soft);
+  padding: 1rem;
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.03);
 }
 
 .donor-avatar-placeholder {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: rgba(255,255,255,0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
+  margin-right: 1rem;
+}
+
+.donor-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .donor-address {
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
-.address-sub,
-.donor-date {
+.address-sub {
+  font-weight: 400;
+  color: var(--text-muted);
   font-size: 0.85rem;
+}
+
+.donor-date {
+  font-size: 0.75rem;
   color: var(--text-muted);
 }
 
 .donor-amount {
   margin-left: auto;
-  font-weight: 900;
+  font-weight: 700;
   color: var(--success);
+  font-size: 1rem;
 }
 
-/* ================= RIGHT ================= */
-
+/* ================= RIGHT COLUMN (SIDEBAR) ================= */
 .sidebar-content {
   position: sticky;
-  top: 100px;
+  top: 2rem;
+  width: 100%;
 }
 
 .funding-card {
   background: var(--bg-card);
-  backdrop-filter: blur(18px);
-  padding: 2.8rem;
-  border-radius: 28px;
+  backdrop-filter: blur(20px);
+  padding: 2rem;
+  border-radius: 24px;
   border: 1px solid var(--border-soft);
-  box-shadow: 0 40px 120px rgba(0,0,0,0.9);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
-
-/* HEADER */
 
 .funding-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
 .funding-status {
-  font-size: 0.7rem;
-  font-weight: 900;
-  padding: 6px 14px;
-  border-radius: 999px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  background: rgba(34,197,94,0.15);
+  letter-spacing: 0.05em;
+}
+
+.funding-status.open {
+  background: rgba(34, 197, 94, 0.2);
   color: var(--success);
+}
+
+.funding-status.closed {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--danger);
 }
 
 .funding-date {
@@ -233,520 +274,256 @@
   color: var(--text-muted);
 }
 
-/* TITLE */
-
 .campaign-title {
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 2.4rem;
-  line-height: 1.1;
-  margin-bottom: 2.2rem;
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 2rem;
   background: linear-gradient(90deg, #a5b4fc, #38bdf8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* PROGRESS */
+/* PROGRESS BAR */
+.progress-section {
+  margin-bottom: 2.5rem;
+}
 
 .progress-bar-bg {
-  height: 14px;
-  background: rgba(255,255,255,0.08);
+  height: 12px;
+  background: rgba(255,255,255,0.1);
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   border-radius: 10px;
-  transition: width 0.8s ease;
+  transition: width 1s ease;
 }
 
 .stats-grid {
   display: flex;
   justify-content: space-between;
-  margin-top: 1.2rem;
+  margin-top: 1rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-item.right {
+  align-items: flex-end;
 }
 
 .stat-value {
-  font-size: 1.8rem;
-  font-weight: 900;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
 }
 
 .stat-value small {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
+  font-weight: 600;
+  margin-left: 4px;
 }
 
 .stat-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 0.8rem;
   color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
-/* ACTION */
-
+/* ACTION AREA */
 .action-box {
-  margin-top: 2.5rem;
-  padding: 1.8rem;
-  border-radius: 20px;
-  background: rgba(2,6,23,0.8);
+  background: rgba(0,0,0,0.3);
+  padding: 1.5rem;
+  border-radius: 16px;
   border: 1px solid var(--border-soft);
+}
+
+.input-label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .amount-input {
   width: 100%;
-  padding: 1rem 1.2rem;
-  border-radius: 14px;
-  background: rgba(2,6,23,0.9);
+  padding: 1rem;
+  padding-right: 3.5rem;
+  border-radius: 12px;
+  background: var(--input-bg);
   border: 1px solid var(--border-soft);
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
 .amount-input:focus {
-  outline: none;
   border-color: var(--primary);
 }
 
 .eth-suffix {
   position: absolute;
-  right: 1.2rem;
+  right: 1rem;
   color: var(--text-muted);
-  font-weight: 800;
+  font-weight: 700;
+  font-size: 0.9rem;
 }
 
 .donate-btn {
   width: 100%;
-  margin-top: 1.4rem;
-  padding: 1.1rem;
-  border-radius: 14px;
+  padding: 1rem;
+  border-radius: 12px;
   border: none;
-  font-weight: 900;
-  font-size: 1.05rem;
-  color: white;
-  cursor: pointer;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
-  box-shadow: 0 20px 40px rgba(99,102,241,0.45);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.2s;
 }
 
 .donate-btn:hover {
-  transform: translateY(-2px);
+  opacity: 0.9;
 }
 
-/* OWNER */
+.donate-btn:active {
+  transform: scale(0.98);
+}
 
+.donate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* SUCCESS BANNER */
+.success-banner {
+  padding: 1rem;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid var(--success);
+  color: var(--success);
+  text-align: center;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+/* OWNER PANEL */
 .owner-panel {
-  margin-top: 2.4rem;
-  padding-top: 1.6rem;
-  border-top: 1px dashed var(--border-soft);
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-soft);
 }
 
 .withdraw-btn {
   width: 100%;
   padding: 1rem;
-  border-radius: 14px;
-  border: none;
-  font-weight: 900;
+  background: transparent;
+  border: 1px solid var(--warning);
+  color: var(--warning);
+  font-weight: 700;
+  border-radius: 12px;
   cursor: pointer;
-  color: white;
-  background: linear-gradient(135deg, var(--warning), #fbbf24);
+  transition: background 0.3s;
 }
 
-/* ================= MOBILE ================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
-
-:root {
-  --font-heading: 'Plus Jakarta Sans', sans-serif;
-  --font-body: 'Inter', sans-serif;
-
-  /* Core Colors */
-  --bg-main: #020617;
-  --bg-card: rgba(15, 23, 42, 0.75);
-  --border-soft: rgba(255,255,255,0.08);
-
-  --primary: #6366f1;
-  --primary-glow: rgba(99,102,241,0.45);
-  --secondary: #22d3ee;
-
-  --text-main: #e5e7eb;
-  --text-muted: #94a3b8;
-
-  --shadow-lg: 0 30px 80px rgba(0,0,0,0.6);
+.withdraw-btn:hover {
+  background: rgba(245, 158, 11, 0.1);
 }
 
-/* ========================================================================= */
-/* 2. PAGE LAYOUT                                                            */
-/* ========================================================================= */
-
-.campaigns-page {
-  min-height: 100vh;
-  padding: 5rem 1rem;
-  background:
-    radial-gradient(circle at top, #312e81 0%, var(--bg-main) 45%),
-    linear-gradient(180deg, var(--bg-main), var(--bg-main));
-  font-family: var(--font-body);
-  color: var(--text-main);
-  overflow-x: hidden;
-}
-
-.header-section {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding: 0 1rem;
-}
-
-.page-title {
-  font-family: var(--font-heading);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  background: linear-gradient(90deg, #a5b4fc, #38bdf8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.2;
-}
-
-.page-subtitle {
-  margin-top: 0.8rem;
-  font-size: 1.05rem;
-  color: var(--text-muted);
-  max-width: 600px;
-  margin-inline: auto;
-}
-
-/* ========================================================================= */
-/* 3. GRID                                                                   */
-/* ========================================================================= */
-
-.campaigns-grid {
-  display: grid;
-  /* Optimized grid columns for mobile */
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-/* ========================================================================= */
-/* 4. CARD                                                                   */
-/* ========================================================================= */
-
-.campaign-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid var(--border-soft);
-  box-shadow: var(--shadow-lg);
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 100%;
-}
-
-.campaign-card:hover {
-  transform: translateY(-8px);
-  box-shadow:
-    0 40px 100px rgba(0,0,0,0.8),
-    0 0 40px var(--primary-glow);
-}
-
-/* ========================================================================= */
-/* IMAGE (UPDATED TO SHOW FULL IMAGE)                                        */
-/* ========================================================================= */
-
-.card-image-wrapper {
-  position: relative;
-  height: 220px;
-  background: #000000; /* Dark background for letterboxing */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.card-img {
-  width: 100%;
-  height: 100%;
-  /* CHANGED FROM COVER TO CONTAIN */
-  object-fit: contain; 
-  transition: transform 0.8s ease;
-}
-
-.campaign-card:hover .card-img {
-  transform: scale(1.05);
-}
-
-/* STATUS BADGE */
-
-.status-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.2);
-  z-index: 10;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
-
-.status-badge.open {
-  color: #22c55e;
-  background: rgba(34,197,94,0.2);
-}
-
-.status-badge.closed {
-  color: #ef4444;
-  background: rgba(239,68,68,0.2);
-}
-
-/* ========================================================================= */
-/* CONTENT                                                                   */
-/* ========================================================================= */
-
-.card-content {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.card-title {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-  color: #fff;
-  line-height: 1.3;
-}
-
-.card-desc {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* ========================================================================= */
-/* PROGRESS                                                                  */
-/* ========================================================================= */
-
-.progress-section {
-  margin-top: auto;
-  margin-bottom: 1.2rem;
-}
-
-.progress-labels {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  font-size: 0.85rem;
-}
-
-.raised-val {
-  font-weight: 800;
-  color: var(--secondary);
-}
-
-.goal-val {
-  color: var(--text-muted);
-}
-
-.progress-track {
-  height: 8px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  border-radius: 6px;
-}
-
-/* ========================================================================= */
-/* FOOTER                                                                    */
-/* ========================================================================= */
-
-.card-footer {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-.avatar-placeholder {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #6366f1, #22d3ee);
-}
-
-.creator-address {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #e2e8f0;
-}
-
-.date-tag {
-  margin-left: auto;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-/* ========================================================================= */
-/* REFRESH FAB                                                               */
-/* ========================================================================= */
-
-.refresh-fab {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: white;
-  font-size: 1.5rem;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(99,102,241,0.4);
-  transition: transform 0.25s ease;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.refresh-fab:hover {
-  transform: rotate(180deg) scale(1.1);
-}
-
-/* ================= MOBILE FIX FOR DASHBOARD ================= */
-
-@media (max-width: 900px) {
-
-  .dashboard-container {
-    grid-template-columns: 1fr; /* ONE COLUMN */
-    gap: 2rem;
-  }
-
-  .hero-image-container {
-    height: 240px; /* smaller image */
-    border-radius: 18px;
-  }
-
-  .hero-image {
-    object-fit: contain;
-  }
-
-  .sidebar-content {
-    position: relative; /* disable sticky */
-    top: auto;
-  }
-
-  .funding-card {
-    padding: 1.8rem;
-    border-radius: 22px;
-  }
-
-  .campaign-title {
-    font-size: 1.8rem;
-  }
-
-  .stats-grid {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .stat-value {
-    font-size: 1.4rem;
-  }
-
-  .tabs-header {
-    gap: 1.5rem;
-    overflow-x: auto;
-  }
-
-  .tab-btn {
-    font-size: 1rem;
-    white-space: nowrap;
-  }
-}
-
-/* ---------- MODERN LOADING SCREEN ---------- */
-
+/* ================= LOADING ================= */
 .loading-screen {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a, #020617);
+  background: var(--bg-main);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .loader-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 40px 50px;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  animation: fadeIn 0.6s ease-in-out;
 }
 
-.loader-card h2 {
-  margin-top: 20px;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #e5e7eb;
-}
-
-.loader-card p {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: #9ca3af;
-}
-
-/* Spinner */
 .spinner {
-  width: 55px;
-  height: 55px;
-  border: 4px solid rgba(255, 255, 255, 0.15);
-  border-top-color: #6366f1;
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255,255,255,0.1);
+  border-top-color: var(--primary);
   border-radius: 50%;
-  margin: 0 auto;
+  margin: 0 auto 1.5rem auto;
   animation: spin 1s linear infinite;
 }
 
-/* Animations */
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+/* ================= RESPONSIVE FIX (MOBILE) ================= */
+@media (max-width: 1000px) {
+
+  .dashboard-wrapper {
+    padding: 5rem 1rem; /* Maintains side padding so text doesn't hit edge */
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+
+  /* SWITCH TO FLEXBOX FOR MOBILE */
+  .dashboard-container {
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    gap: 2rem;
+  }
+
+  .main-content,
+  .sidebar-content {
+    width: 100%; /* Ensures they take full width */
+    max-width: 100%;
+  }
+
+  .sidebar-content {
+    position: static; /* Removes sticky on mobile */
+    order: -1; /* OPTIONAL: Moves Funding Card ABOVE Story on mobile (Standard UX) */
+    /* Remove 'order: -1' if you want the Story first like in your original code */
+  }
+
+  .hero-image-container {
+    height: auto; /* Let height adjust automatically */
+    aspect-ratio: 16/9; /* Maintain a good video-like ratio */
+  }
+  
+  .category-tag {
+    top: 12px;
+    left: 12px;
+  }
+
+  .campaign-title {
+    font-size: 1.7rem;
+    text-align: center;
+  }
+  
+  .funding-card {
+    padding: 1.5rem;
+  }
+
+  .story-heading {
+    font-size: 1.5rem;
+  }
+  
+  .tabs-header {
+    justify-content: flex-start; /* Aligns tabs to left */
   }
 }
