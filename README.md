@@ -1,4 +1,3 @@
-readme_content = """
 # 💸 Crowdfunding DApp using Blockchain
 
 A fully functional decentralized crowdfunding application that allows users to create, fund, and manage fundraising campaigns securely on the blockchain.
@@ -70,4 +69,5 @@ npm start
 ![image alt](https://github.com/manav121257NN/Crowdfunding-App-Using-Blockchain/blob/main/Images/Screenshot%202025-12-20%20131154.png?raw=true)
 ![image alt](https://github.com/manav121257NN/Crowdfunding-App-Using-Blockchain/blob/main/Images/Screenshot%202025-12-20%20131205.png?raw=true)
 ![image alt](https://github.com/manav121257NN/Crowdfunding-App-Using-Blockchain/blob/main/Images/Screenshot%202025-12-20%20131221.png?raw=true)
+
 
